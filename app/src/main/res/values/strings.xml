@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Star2SSP</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="select_date_and_time">Select date and time :</string>
+    <string name="Select_line">Select line</string>
+    <string name="Select_direction">Select direction</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_2">Activity2</string>
+</resources>

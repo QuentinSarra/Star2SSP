@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fr.istic.star2ssp.Fragments.MainFragment"
+    android:gravity="center"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/selectDate"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/select_date_and_time"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectDate"/>
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+
+    <View
+        android:id="@+id/split1"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="#FF909090"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker"/>
+
+
+    <TextView
+        android:id="@+id/selectLine"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/Select_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/split1" />
+
+    <Spinner
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectLine" />
+
+
+    <View
+        android:id="@+id/split2"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="#FF909090"
+        app:layout_constraintTop_toBottomOf="@+id/line"/>
+
+    <TextView
+        android:id="@+id/selectDir"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/Select_direction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/split2" />
+
+    <Spinner
+        android:id="@+id/direction"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectDir" />
+
+    <View
+        android:id="@+id/split3"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="#FF909090"
+        app:layout_constraintTop_toBottomOf="@+id/direction"/>
+
+    <Button
+        android:id="@+id/fragment_main_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"
+        android:background="#00000000"
+        android:textColor="#FF909090"
+        android:textSize="20sp"/>
+
+</LinearLayout>
