@@ -1,58 +1,47 @@
 package fr.istic.star2ssp.Activities;
 
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import fr.istic.star2ssp.Fragments.Fragment2;
-import fr.istic.star2ssp.Fragments.Fragment3;
+import androidx.fragment.app.FragmentActivity;
+
+import java.util.ArrayList;
+
 import fr.istic.star2ssp.R;
+import fr.istic.star2ssp.StarContract;
+
 
 public class Activity2 extends FragmentActivity {
 
     ListView listView;
     SearchView searchview;
-
+    private static final Uri Stops = StarContract.BusRoutes.CONTENT_URI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_2);
+        ArrayList <String> arrets = new ArrayList<String>();
 
-        listView = (ListView) findViewById(R.id.listview);
-        searchview = (SearchView) findViewById(R.id.simpleSearchView);
-        String[] listeCourse = new String[]{
-                "Oranges",
-                "Tomates",
-                "Raisin",
-                "Pain",
-                "Banane",
-                "Kiwi",
-                "Pates",
-                "Raviolis",
-                "Fraises",
-                "Glace",
-                "Pizza",
-                "Yaourts",
-                "Riz",
-                "Haricots"
-        };
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeCourse);
+        Cursor cursor = this.getContentResolver().query(StarContract.BusRoutes.CONTENT_URI, null, null, null, null);
+
+        while(cursor.moveToNext()){
+            arrets.add(cursor.getString(1));
+            arrets.add("ee");
+        }
+
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrets);
 
 
         listView.setAdapter(arrayAdapter);
