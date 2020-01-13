@@ -42,10 +42,15 @@ public class Activity2 extends FragmentActivity {
         Cursor cursor = this.getContentResolver().query(StarContract.Stops.CONTENT_URI, null, null, null, null);
 
         while(cursor.moveToNext()){
-            arrets.add(cursor.getString(0));
+            arrets.add(cursor.getString(4));
         }
 
-
+        Cursor cursor1 = this.getContentResolver().query(StarContract.StopTimes.CONTENT_URI, null, null, null, null);
+        Cursor cursor2 = this.getContentResolver().query(StarContract.Trips.CONTENT_URI, null, null, null, null);
+        Cursor cursor3 = this.getContentResolver().query(StarContract.BusRoutes.CONTENT_URI, null, null, null, null);
+        String query = "SELECT "+cursor.getString(4)+"From busroute where"+cursor.getString(0)+"="+cursor1.getString(4)+" AND "+cursor1.getString(1)+" = ";
+        query += cursor2.getString(0)+" AND " +cursor2.getString(2)+" = " +cursor3.getString(0)+"";
+        Cursor curseurDir = db.
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrets);
 
 
@@ -62,7 +67,7 @@ public class Activity2 extends FragmentActivity {
         });
 
         searchview.setActivated(true);
-        searchview.setQueryHint("Type your keyword here");
+        searchview.setQueryHint("Votre arrêt :");
         searchview.onActionViewExpanded();
         searchview.setIconified(false);
         searchview.clearFocus();
