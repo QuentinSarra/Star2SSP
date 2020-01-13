@@ -23,21 +23,26 @@ public class Activity2 extends FragmentActivity {
 
     ListView listView;
     SearchView searchview;
-    private static final Uri Stops = StarContract.BusRoutes.CONTENT_URI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_2);
+        listView = (ListView) findViewById(R.id.listview);
+        searchview = (SearchView) findViewById(R.id.simpleSearchView);
         ArrayList <String> arrets = new ArrayList<String>();
+        Intent intent = getIntent();
+        if (intent != null) {
+            String line = "";
+            if (intent.hasExtra("line")) {
+                line = intent.getStringExtra("line");
+            }
+        }
 
-
-        Cursor cursor = this.getContentResolver().query(StarContract.BusRoutes.CONTENT_URI, null, null, null, null);
+        Cursor cursor = this.getContentResolver().query(StarContract.Stops.CONTENT_URI, null, null, null, null);
 
         while(cursor.moveToNext()){
-            arrets.add(cursor.getString(1));
-            arrets.add("ee");
+            arrets.add(cursor.getString(0));
         }
 
 
