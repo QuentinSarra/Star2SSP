@@ -3,13 +3,17 @@ package fr.istic.star2ssp.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import fr.istic.star2ssp.R;
+import fr.istic.star2ssp.StarContract;
 
 public class Activity3 extends AppCompatActivity {
 
@@ -21,27 +25,15 @@ public class Activity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_3);
         listView = (ListView) findViewById(R.id.listview2);
+        ArrayList<String> horaires = new ArrayList<String>();
+        Cursor cursor = this.getContentResolver().query(StarContract.StopTimes.CONTENT_URI,null,null,null,null);
+        while(cursor.moveToNext()){
+            String horaire = cursor.getString(cursor.getColumnIndex(StarContract.StopTimes.StopTimeColumns.ARRIVAL_TIME));
+            horaires.add(horaire);
+        }
 
-        String[] listeCourse = new String[]{
-                "1",
-                "2",
-                "3",
-                "4",
-                "1",
-                "2",
-                "3",
-                "4",
-                "1",
-                "2",
-                "3",
-                "4",
-                "1",
-                "2",
-                "3",
-                "4"
-        };
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeCourse);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, horaires);
 
         listView.setAdapter(arrayAdapter);
 

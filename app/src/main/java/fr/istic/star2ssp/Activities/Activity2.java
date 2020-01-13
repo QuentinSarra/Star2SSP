@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.SearchView;
 
 import androidx.fragment.app.FragmentActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import fr.istic.star2ssp.R;
@@ -32,25 +34,24 @@ public class Activity2 extends FragmentActivity {
         searchview = (SearchView) findViewById(R.id.simpleSearchView);
         ArrayList <String> arrets = new ArrayList<String>();
         Intent intent = getIntent();
+        String line = "";
+        String destination = "";
+
         if (intent != null) {
-            String line = "";
             if (intent.hasExtra("line")) {
                 line = intent.getStringExtra("line");
+            }
+            if (intent.hasExtra("destination")) {
+                destination = intent.getStringExtra("destination");
             }
         }
 
         Cursor cursor = this.getContentResolver().query(StarContract.Stops.CONTENT_URI, null, null, null, null);
 
         while(cursor.moveToNext()){
-            arrets.add(cursor.getString(4));
+                        arrets.add(cursor.getString(4));
         }
 
-        Cursor cursor1 = this.getContentResolver().query(StarContract.StopTimes.CONTENT_URI, null, null, null, null);
-        Cursor cursor2 = this.getContentResolver().query(StarContract.Trips.CONTENT_URI, null, null, null, null);
-        Cursor cursor3 = this.getContentResolver().query(StarContract.BusRoutes.CONTENT_URI, null, null, null, null);
-        String query = "SELECT "+cursor.getString(4)+"From busroute where"+cursor.getString(0)+"="+cursor1.getString(4)+" AND "+cursor1.getString(1)+" = ";
-        query += cursor2.getString(0)+" AND " +cursor2.getString(2)+" = " +cursor3.getString(0)+"";
-        Cursor curseurDir = db.
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrets);
 
 
